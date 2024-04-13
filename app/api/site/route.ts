@@ -2,6 +2,9 @@ import { Status } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer-core";
 
+export const maxDuration = 300;
+export const dynamic = "force-dynamic";
+
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const browserWSEndpoint = process.env.BROWSERLESS_WS_URL;
 const getBrowser = async () => puppeteer.connect({ browserWSEndpoint });
@@ -43,13 +46,11 @@ export async function POST(req: NextRequest) {
 
     await browser.close();
 
-    console.log("[SITE_ROUTE_SUCCESS]", { url, title, description });
-
     return NextResponse.json({
       status: status(),
       title,
       description,
-      favicon,
+      favicon: favicon?.includes("http") ? favicon : `${url}${favicon}`,
       screenshot,
       fetchedAt: Date.now(),
     });

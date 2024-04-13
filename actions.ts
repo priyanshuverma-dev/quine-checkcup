@@ -42,6 +42,7 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
     });
     const data = res.data;
 
+    console.info("[TOP_HERE_RTTTTT]", data.message);
     if (res.status !== 200) {
       throw new Error(data.message);
     }
@@ -60,7 +61,7 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
       error: false,
     };
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     return {
       message: error.message,
       error: true,
@@ -117,7 +118,7 @@ export async function updateSite(prevState: FormState, formData: FormData) {
       error: false,
     };
   } catch (error: any) {
-    console.error(error);
+    // console.error(error);
     return {
       message: error.message,
       error: true,
