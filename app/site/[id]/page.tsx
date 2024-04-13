@@ -1,3 +1,4 @@
+import CenterContainer from "@/components/center-container";
 import SiteForm from "@/components/forms/site-form";
 import Navbar from "@/components/navbar";
 import SiteCard from "@/components/site-card";
@@ -23,10 +24,11 @@ const SitePage = async ({ params }: { params: { id: string } }) => {
   return (
     <>
       <Navbar />
-      <SoonMore />
-      <SiteForm />
-
-      <SiteCard {...data} />
+      <CenterContainer>
+        <SoonMore />
+        <SiteForm />
+        <SiteCard {...data} />
+      </CenterContainer>
     </>
   );
 };

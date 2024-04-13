@@ -22,12 +22,11 @@ function SiteForm({}: Props) {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="mt-8 flex justify-center">
+    <div className="flex flex-col justify-center items-center w-full">
+      <div className="mt-8 flex justify-center w-full">
         <form
-          action={(fd) => {
-            formAction(fd);
-          }}
+          action={formAction}
+          className="flex justify-center items-center w-full"
         >
           <FormFields />
         </form>
@@ -59,7 +58,7 @@ const FormFields = () => {
         type="text"
         name="url"
         placeholder="Enter your website URL"
-        className="px-4 py-2 w-96 rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        className="px-4 py-2 w-[100%] rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       />
       <button
         type="submit"

@@ -38,13 +38,14 @@ export async function POST(req: NextRequest) {
       }
     };
     const title = await page.title();
-    const description = await page.$eval(
-      'meta[name="description"]',
-      (element) => element.getAttribute("content")
-    );
-    const favicon = await page.$eval('link[rel="icon"]', (element) =>
-      element.getAttribute("href")
-    );
+    const description = await page
+      .$eval('meta[name="description"]', (element) =>
+        element.getAttribute("content")
+      )
+      .catch(() => null);
+    const favicon = await page
+      .$eval('link[rel="icon"]', (element) => element.getAttribute("href"))
+      .catch(() => null);
     const screenshot = await page.screenshot({ encoding: "base64" });
 
     await browser.close();

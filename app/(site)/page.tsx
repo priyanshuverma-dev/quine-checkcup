@@ -1,6 +1,8 @@
+import CenterContainer from "@/components/center-container";
 import SiteForm from "@/components/forms/site-form";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
+import SiteList from "@/components/site-list";
 import SoonMore from "@/components/soon-more-banner";
 
 export default function Home() {
@@ -8,9 +10,11 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <SoonMore />
-
-      <SiteForm />
+      <CenterContainer>
+        <SiteForm />
+        <SoonMore />
+        <SiteList />
+      </CenterContainer>
     </>
   );
 }
