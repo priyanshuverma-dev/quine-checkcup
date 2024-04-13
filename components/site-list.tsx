@@ -5,6 +5,7 @@ import { Status } from "@prisma/client";
 import React, { Fragment } from "react";
 import { IoReload } from "react-icons/io5";
 import RefreshButton from "./forms/refresh-site";
+import moment from "moment";
 
 type Props = {};
 
@@ -49,7 +50,7 @@ const SiteList = async (props: Props) => {
                 Website is {site.status}
               </span>
               <span className="py-1.5 px-4 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">
-                Fetched at: {site.updatedAt.toLocaleString()}
+                Fetched at: {moment(site.updatedAt).fromNow()}
               </span>
             </div>
             {/* // Body */}

@@ -40,10 +40,9 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
     }
 
     const res = await axios.post(`${BASE_ROUTE}/api/site`, {
-      body: JSON.stringify({ url }),
-      headers: { "Content-Type": "application/json" },
+      url,
     });
-    const data = await res.data;
+    const data = res.data;
 
     if (res.status !== 200) {
       throw new Error(data.message);
@@ -95,8 +94,7 @@ export async function updateSite(prevState: FormState, formData: FormData) {
     }
 
     const res = await axios.post(`${BASE_ROUTE}/api/site`, {
-      body: JSON.stringify({ url }),
-      headers: { "Content-Type": "application/json" },
+      url,
     });
     const data = await res.data;
 

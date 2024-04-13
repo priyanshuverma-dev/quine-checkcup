@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Site, Status } from "@prisma/client";
 import clsx from "clsx";
+import moment from "moment";
 import Link from "next/link";
 import React from "react";
 import { IoReload } from "react-icons/io5";
@@ -46,7 +47,7 @@ function SiteCard({
           Website is {status}
         </span>
         <span className="py-1.5 px-4 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">
-          Fetched at: {updatedAt.toLocaleString()}
+          Fetched at: {moment(updatedAt).fromNow()}
         </span>
       </div>
       {/* // Body */}
