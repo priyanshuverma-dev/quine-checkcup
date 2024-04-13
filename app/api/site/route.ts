@@ -2,10 +2,10 @@ import { Status } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
-const IS_PRODUCTION = process.env.NODE_ENV === "production";
+const IS_BROWSERLESS = process.env.IS_BROWSERLESS_ON;
 const browserWSEndpoint = `https://production-sfo.browserless.io?token=${process.env.BROWSERLESS_API_KEY}`;
 const getBrowser = async () =>
-  IS_PRODUCTION
+  IS_BROWSERLESS
     ? puppeteer.connect({ browserWSEndpoint })
     : puppeteer.launch({
         headless: true,
