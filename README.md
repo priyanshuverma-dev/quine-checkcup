@@ -13,14 +13,14 @@ Checkcup is a website monitoring tool that fetches the status of websites along 
 1. Clone the repository:
 
    ```
-   git clone https://github.com/your-username/checkcup.git
+   git clone https://github.com/your-username/quine-checkcup.git
    ```
 
 2. Install dependencies:
 
    ```
    cd checkcup
-   npm install
+   bun install
    ```
 
 3. Configure environment variables:
@@ -40,13 +40,13 @@ Checkcup is a website monitoring tool that fetches the status of websites along 
 1. Generate Prisma client:
 
    ```
-   npx prisma generate
+   bunx prisma generate
    ```
 
 2. Start the development server:
 
    ```
-   npm run dev
+   bun run dev
    ```
 
 3. Open your browser and navigate to `http://localhost:3000`.
@@ -62,13 +62,13 @@ To deploy Checkcup to production, follow these steps:
 1. Build the Next.js app:
 
    ```
-   npm run build
+   bun run build
    ```
 
 2. Start the production server:
 
    ```
-   npm start
+   bun start
    ```
 
 3. Visit the deployed URL to access Checkcup.
