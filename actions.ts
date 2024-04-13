@@ -2,6 +2,7 @@
 import { z } from "zod";
 import db from "./lib/db";
 import { BASE_ROUTE } from "./lib/utils";
+import axios, { Axios } from "axios";
 
 const SiteFormSchema = z.object({
   url: z.string().url({
@@ -38,14 +39,13 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
       };
     }
 
-    const res = await fetch(`${BASE_ROUTE}/api/site`, {
-      method: "POST",
+    const res = await axios.post(`${BASE_ROUTE}/api/site`, {
       body: JSON.stringify({ url }),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await res.json();
+    const data = await res.data;
 
-    if (!res.ok) {
+    if (res.status !== 200) {
       throw new Error(data.message);
     }
     const site = await db.site.create({
@@ -94,14 +94,13 @@ export async function updateSite(prevState: FormState, formData: FormData) {
       };
     }
 
-    const res = await fetch(`${BASE_ROUTE}/api/site`, {
-      method: "POST",
+    const res = await axios.post(`${BASE_ROUTE}/api/site`, {
       body: JSON.stringify({ url }),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await res.json();
+    const data = await res.data;
 
-    if (!res.ok) {
+    if (res.status !== 200) {
       throw new Error(data.message);
     }
     const site = await db.site.update({
