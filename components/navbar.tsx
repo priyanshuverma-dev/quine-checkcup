@@ -7,9 +7,9 @@ const font = Caveat({ subsets: ["latin"], weight: "700" });
 
 const Navbar = () => {
   return (
-    <header className="w-full text-sm">
+    <header className="mx-2 text-sm">
       <nav
-        className="mt-6 relative md:w-[85rem] max-w-full flex border rounded-[36px] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] mx-2 px-4 items-center justify-between py-4 md:py-0 md:px-6 lg:px-8 xl:mx-auto bg-gray-800 border-gray-700"
+        className="mt-6 relative md:w-[85rem] max-w-full flex border rounded-[36px] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] px-4 items-center justify-between py-4 md:py-0 md:px-6 lg:px-8 xl:mx-auto bg-gray-800 border-gray-700"
         aria-label="navbar"
       >
         <div className="flex items-center justify-center">
@@ -24,12 +24,14 @@ const Navbar = () => {
         <div className="flex flex-row gap-4 mt-0 items-center justify-center md:justify-end md:gap-y-0 md:mt-0 md:ps-7">
           <Link
             href="" // !TODO: Add Quine link
+            target="_blank"
             className="text-white hover:text-gray-300 font-bold rounded-md p-2 border-2 border-neutral-900 bg-neutral-800 my-4"
           >
             👍 Vote on Quine
           </Link>
           <Link
-            href="" // !TODO: Add Github link
+            href="https://github.com/priyanshuverma-dev/quine-checkcup"
+            target="_blank"
             className="text-white hover:text-gray-300 font-bold rounded-md p-2 border-2 border-neutral-900 bg-neutral-800 my-4"
           >
             ⭐ On Github
