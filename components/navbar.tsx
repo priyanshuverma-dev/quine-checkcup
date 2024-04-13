@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
         <div className="flex flex-row gap-4 mt-0 items-center justify-center md:justify-end md:gap-y-0 md:mt-0 md:ps-7">
           <Link
-            href="" // !TODO: Add Quine link
+            href="https://quine.sh/repo/priyanshuverma-dev-quine-checkcup-786060195?utm_source=copy&utm_share_context=rdp" // !TODO: Add Quine link
             target="_blank"
             className="text-white hover:text-gray-300 font-bold rounded-md p-2 border-2 border-neutral-900 bg-neutral-800 my-4"
           >
