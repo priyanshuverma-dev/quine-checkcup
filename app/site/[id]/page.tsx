@@ -6,11 +6,7 @@ import SoonMore from "@/components/soon-more-banner";
 import db from "@/lib/db";
 import React from "react";
 
-type Props = {};
-
 const SitePage = async ({ params }: { params: { id: string } }) => {
-  console.log(params.id);
-
   const data = await db.site.findUnique({
     where: {
       id: params.id,

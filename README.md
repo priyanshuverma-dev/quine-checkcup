@@ -28,11 +28,11 @@ Checkcup is a website monitoring tool that fetches the status of websites along 
    Create a `.env` file in the root directory and provide the following variables:
 
    ```
-   BROWSERLESS_API_KEY=your_browserless_api_key
+   BROWSERLESS_WS_URL=your_browserless_ws_url
    DATABASE_URL=your_database_url
    ```
 
-   Replace `your_browserless_api_key` with your Browserless API key.
+   Replace `your_browserless_ws_url` with your Browserless URL.
    Replace `your_database_url` with the URL of your MongoDB database.
 
 ## Usage
