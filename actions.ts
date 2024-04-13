@@ -33,10 +33,8 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
       where: { url },
     });
     if (alreadyExists) {
-      return {
-        message: `/site/${alreadyExists.id}`,
-        error: false,
-      };
+      const res = await updateSite(prevState, formData);
+      return res;
     }
 
     const res = await axios.post(`${BASE_ROUTE}/api/site`, {

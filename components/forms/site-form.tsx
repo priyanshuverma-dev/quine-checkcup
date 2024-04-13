@@ -32,6 +32,12 @@ function SiteForm({}: Props) {
         </form>
       </div>
       <div>
+        <div className="flex justify-center h-8 flex-row w-full items-center px-2 my-2rounded-md">
+          <BiErrorCircle className="text-teal-700 mr-1" />
+          <p className="leading-6 text-teal-700">
+            It can take upto 1-2 minutes to fetch status.
+          </p>
+        </div>
         {state.error && (
           <>
             <div className="flex justify-center h-8 flex-row w-full items-center px-2 my-2 bg-red-500/25 rounded-md">
