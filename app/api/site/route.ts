@@ -3,8 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
-const browserWSEndpoint =
-  "https://production-sfo.browserless.io?token=GOES-HERE";
+const browserWSEndpoint = `https://production-sfo.browserless.io?token=${process.env.BROWSERLESS_API_KEY}`;
 const getBrowser = async () =>
   IS_PRODUCTION
     ? puppeteer.connect({ browserWSEndpoint })
