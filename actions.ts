@@ -2,7 +2,7 @@
 import { z } from "zod";
 import db from "./lib/db";
 import { BASE_ROUTE } from "./lib/utils";
-import { ScrapeSite } from "./puppeteer/browser";
+import axios, { Axios } from "axios";
 
 const SiteFormSchema = z.object({
   url: z.string().url({
@@ -37,12 +37,15 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
       return res;
     }
 
-    const { success, data, message } = await ScrapeSite({ url });
+    const res = await axios.post(`${BASE_ROUTE}/api/site`, {
+      url,
+    });
+    const data = res.data;
 
-    if (!success || !data) {
-      throw new Error(message);
+    console.info("[TOP_HERE_RTTTTT]", res);
+    if (res.status !== 200) {
+      throw new Error(data.message);
     }
-
     const site = await db.site.create({
       data: {
         url,
@@ -89,12 +92,14 @@ export async function updateSite(prevState: FormState, formData: FormData) {
       };
     }
 
-    const { success, data, message } = await ScrapeSite({ url });
+    const res = await axios.post(`${BASE_ROUTE}/api/site`, {
+      url,
+    });
+    const data = await res.data;
 
-    if (!success || !data) {
-      throw new Error(message);
+    if (res.status !== 200) {
+      throw new Error(data.message);
     }
-
     const site = await db.site.update({
       where: {
         id: alreadyExists.id,
