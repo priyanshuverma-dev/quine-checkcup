@@ -24,7 +24,7 @@ export default function RootLayout({
           "bg-gradient-to-r from-slate-900 to-stone-800"
         )}
       >
-        <QueryProvider>{children}</QueryProvider>
+        {children}
       </body>
     </html>
   );

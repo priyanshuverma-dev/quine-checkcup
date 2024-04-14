@@ -44,17 +44,33 @@ app.post("/api/site", async (c) => {
           return Status.UNKOWN;
       }
     };
-    const title = await page.title();
-    const description = await page
-      .$eval('meta[name="description"]', (element) =>
-        element.getAttribute("content")
-      )
-      .catch(() => null);
-    const favicon = await page
-      .$eval('link[rel="icon"]', (element) => element.getAttribute("href"))
-      .catch(() => null);
+
+    const { title, description, favicon, timing } = await page.evaluate(() => {
+      const title = document.title;
+      const description = document
+        .querySelector("meta[name='description']")
+        ?.getAttribute("content");
+      const timing = Date.now();
+
+      const favicon = document
+        .querySelector("link[rel='icon']")
+        ?.getAttribute("href");
+
+      return {
+        title,
+        description,
+        favicon,
+        timing,
+      };
+    });
+
     const screenshot = await page
-      .screenshot({ encoding: "base64" })
+      .screenshot({
+        encoding: "base64",
+        optimizeForSpeed: true,
+        quality: 50,
+        type: "webp",
+      })
       .catch(() => null);
 
     await browser.close();
@@ -70,7 +86,7 @@ app.post("/api/site", async (c) => {
           : `${url}${favicon}`
         : "",
       screenshot: screenshot ?? "",
-      fetchedAt: Date.now(),
+      fetchedAt: timing,
     });
   } catch (error: any) {
     console.log("[SITE_ROUTE_ERROR]", error.message);

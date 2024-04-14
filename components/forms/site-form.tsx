@@ -33,6 +33,9 @@ function SiteForm() {
         {
           body: JSON.stringify({ url }),
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       const data = await scrapedRes.json();
