@@ -48,7 +48,9 @@ app.post("/api/site", async (c) => {
     const favicon = await page
       .$eval('link[rel="icon"]', (element) => element.getAttribute("href"))
       .catch(() => null);
-    const screenshot = await page.screenshot({ encoding: "base64" });
+    const screenshot = await page
+      .screenshot({ encoding: "base64" })
+      .catch(() => null);
 
     await browser.close();
 
@@ -61,7 +63,7 @@ app.post("/api/site", async (c) => {
           ? favicon
           : `${url}${favicon}`
         : "",
-      screenshot,
+      screenshot: screenshot ?? "",
       fetchedAt: Date.now(),
     });
   } catch (error: any) {
