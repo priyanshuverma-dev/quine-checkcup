@@ -1,7 +1,9 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import puppeteer from "puppeteer-core";
+import { cors } from "hono/cors";
 const app = new Hono();
+app.use("/api/*", cors());
 var Status;
 (function (Status) {
     Status["ACTIVE"] = "ACTIVE";
@@ -20,6 +22,7 @@ app.post("/api/site", async (c) => {
         }
         const browser = await getBrowser();
         const page = await browser.newPage();
+        console.log("[FETCHING]", url);
         await page.setViewport({ width: 1280, height: 720 });
         const data = await page.goto(url, { waitUntil: "networkidle0" });
         const status = () => {
@@ -34,16 +37,33 @@ app.post("/api/site", async (c) => {
                     return Status.UNKOWN;
             }
         };
-        const title = await page.title();
-        const description = await page
-            .$eval('meta[name="description"]', (element) => element.getAttribute("content"))
+        const { title, description, favicon, timing } = await page.evaluate(() => {
+            const title = document.title;
+            const description = document
+                .querySelector("meta[name='description']")
+                ?.getAttribute("content");
+            const timing = Date.now();
+            const favicon = document
+                .querySelector("link[rel='icon']")
+                ?.getAttribute("href");
+            return {
+                title,
+                description,
+                favicon,
+                timing,
+            };
+        });
+        const screenshot = await page
+            .screenshot({
+            encoding: "base64",
+            optimizeForSpeed: true,
+            quality: 50,
+            type: "webp",
+        })
             .catch(() => null);
-        const favicon = await page
-            .$eval('link[rel="icon"]', (element) => element.getAttribute("href"))
-            .catch(() => null);
-        const screenshot = await page.screenshot({ encoding: "base64" });
         await browser.close();
         return c.json({
+            url: url,
             status: status(),
             title,
             description,
@@ -52,8 +72,8 @@ app.post("/api/site", async (c) => {
                     ? favicon
                     : `${url}${favicon}`
                 : "",
-            screenshot,
-            fetchedAt: Date.now(),
+            screenshot: screenshot ?? "",
+            fetchedAt: timing,
         });
     }
     catch (error) {
