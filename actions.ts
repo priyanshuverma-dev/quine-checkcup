@@ -36,13 +36,14 @@ export async function fetchSite(prevState: FormState, formData: FormData) {
       const res = await updateSite(prevState, formData);
       return res;
     }
-
-    const res = await axios.post(`${BASE_ROUTE}/api/site`, {
-      url,
+    const res = await fetch(`${BASE_ROUTE}/api/site`, {
+      body: JSON.stringify({ url }),
+      method: "POST",
     });
-    const data = res.data;
+    const data = await res.json();
 
-    console.info("[TOP_HERE_RTTTTT]", res);
+    console.log("[TOP_HERE_RTTTTT]", res);
+
     if (res.status !== 200) {
       throw new Error(data.message);
     }
@@ -92,10 +93,13 @@ export async function updateSite(prevState: FormState, formData: FormData) {
       };
     }
 
-    const res = await axios.post(`${BASE_ROUTE}/api/site`, {
-      url,
+    const res = await fetch(`${BASE_ROUTE}/api/site`, {
+      body: JSON.stringify({ url }),
+      method: "POST",
     });
-    const data = await res.data;
+    const data = await res.json();
+
+    console.log("[TOP_HERE_RTTTTT]", res);
 
     if (res.status !== 200) {
       throw new Error(data.message);
