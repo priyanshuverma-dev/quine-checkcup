@@ -57,14 +57,10 @@ app.post("/api/site", async (c) => {
       .screenshot({ encoding: "base64" })
       .catch(() => null);
 
-    console.log("[FETCHED]", {
-      status: status(),
-      title,
-      fetchedAt: Date.now(),
-    });
     await browser.close();
 
     return c.json({
+      url: url,
       status: status(),
       title,
       description,
