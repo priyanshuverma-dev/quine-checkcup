@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <header className="mx-2 text-sm">
       <nav
-        className="mt-6 relative md:w-[85rem] max-w-full flex border rounded-[36px] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] px-4 items-center justify-between py-4 md:py-0 md:px-6 lg:px-8 xl:mx-auto bg-gray-800 border-gray-700"
+        className="mt-6 relative flex-col sm:flex-row md:w-[85rem] max-w-full flex border rounded-[36px] shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] px-4 items-center justify-between py-4 md:py-0 md:px-6 lg:px-8 xl:mx-auto bg-gray-800 border-gray-700"
         aria-label="navbar"
       >
         <div className="flex items-center justify-center">

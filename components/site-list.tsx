@@ -25,13 +25,17 @@ const SiteList = async (props: Props) => {
             <div className="flex justify-between flex-row items-center p-2">
               <div className="flex flex-row justify-start items-center p-1.5 bg-neutral-800/55 border-2 border-neutral-800/[.7] rounded-full m-1">
                 <img
-                  src={site.favicon ?? "/next.svg"}
+                  src={
+                    site.favicon
+                      ? site.favicon
+                      : `data:image/*;base64, ${PLACEHOLDER_IMAGE_BASE64}`
+                  }
                   className="w-6 h-6"
                   alt={`Favicon of ${site.url}`}
                 />
                 <p className="leading-6 pl-1 font-medium text-lg">{site.url}</p>
               </div>
-              <RefreshButton url={site.url} />
+              {/* <RefreshButton url={site.url} /> */}
             </div>
 
             <div className="my-2">
@@ -65,9 +69,11 @@ const SiteList = async (props: Props) => {
                 className="rounded-lg w-full h-full object-center"
               />
               <div className="px-2">
-                <p className="text-lg font-medium py-2">{site.title}</p>
+                <p className="text-lg font-medium py-2">
+                  {site.title ?? "No title"}
+                </p>
                 <p className="text-sm">
-                  {site.description?.substring(0, 180)}..
+                  {site.description?.substring(0, 180) ?? "No description"}..
                 </p>
               </div>
             </div>
