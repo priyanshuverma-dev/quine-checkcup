@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
+import QueryProvider from "@/providers/query";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
           "bg-gradient-to-r from-slate-900 to-stone-800"
         )}
       >
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );

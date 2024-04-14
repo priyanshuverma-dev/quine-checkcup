@@ -1,8 +1,10 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import puppeteer from "puppeteer-core";
-
+import { cors } from "hono/cors";
 const app = new Hono();
+
+app.use("/api/*", cors());
 
 enum Status {
   ACTIVE = "ACTIVE",
@@ -24,6 +26,9 @@ app.post("/api/site", async (c) => {
 
     const browser = await getBrowser();
     const page = await browser.newPage();
+
+    console.log("[FETCHING]", url);
+
     await page.setViewport({ width: 1280, height: 720 });
     const data = await page.goto(url, { waitUntil: "networkidle0" });
 
@@ -52,6 +57,12 @@ app.post("/api/site", async (c) => {
       .screenshot({ encoding: "base64" })
       .catch(() => null);
 
+    console.log("[FETCHED]", {
+      status: status(),
+      title,
+      fetchedAt: Date.now(),
+    });
+    await page.close();
     await browser.close();
 
     return c.json({

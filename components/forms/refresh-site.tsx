@@ -19,7 +19,7 @@ const RefreshButton = ({ url }: { url: string }) => {
   }
 
   return (
-    <form action={formAction}>
+    <form action={() => {}}>
       <input type="url" name="url" readOnly hidden value={url} />
       <SubmitButton />
     </form>
