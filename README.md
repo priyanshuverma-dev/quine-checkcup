@@ -28,32 +28,56 @@ Checkcup is a website monitoring tool that fetches the status of websites along 
    Create a `.env` file in the root directory and provide the following variables:
 
    ```
-   BROWSERLESS_WS_URL=your_browserless_ws_url
    DATABASE_URL=your_database_url
+   NEXT_PUBLIC_URL=server_url
    ```
 
-   Replace `your_browserless_ws_url` with your Browserless URL.
    Replace `your_database_url` with the URL of your MongoDB database.
+   Replace `server_url` with the URL of your server.
+
+4. Install dependencies for the `server` directory:
+
+   ```
+   cd server
+   bun install
+   ```
+
+5. Configure environment variables for the `server` directory:
+
+   Create a `.env` file in the `server` directory and provide the following variables:
+
+   ```
+   BROWSERLESS_URL=browserless_url
+   ```
+
+   Replace `browserless_url` with the URL of your Browserless instance.
 
 ## Usage
 
-1. Generate Prisma client:
+1. Start the server:
+
+   ```
+   cd server
+   bun run dev
+   ```
+
+2. Generate Prisma client:
 
    ```
    bunx prisma generate
    ```
 
-2. Start the development server:
+3. Start the development server:
 
    ```
    bun run dev
    ```
 
-3. Open your browser and navigate to `http://localhost:3000`.
+4. Open your browser and navigate to `http://localhost:3000`.
 
-4. Enter the URLs of the websites you want to monitor and click on the "Check Status" button.
+5. Enter the URLs of the websites you want to monitor and click on the "Check Status" button.
 
-5. View the status, response time, and screenshot of each website.
+6. View the status, response time, and screenshot of each website.
 
 ## Deployment
 
@@ -72,6 +96,8 @@ To deploy Checkcup to production, follow these steps:
    ```
 
 3. Visit the deployed URL to access Checkcup.
+
+4. To deploy the server, follow the same steps as above in server directory.
 
 ## Technologies Used
 
