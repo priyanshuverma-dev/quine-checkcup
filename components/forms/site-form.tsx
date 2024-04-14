@@ -46,7 +46,11 @@ function SiteForm() {
         method: "POST",
         body: JSON.stringify({
           url,
-          ...data,
+          description: data.description,
+          favicon: data.favicon,
+          image: data.screenshot,
+          status: data.status,
+          title: data.title,
         }),
         headers: {
           "Content-Type": "application/json",
