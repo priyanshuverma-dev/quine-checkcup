@@ -62,7 +62,6 @@ app.post("/api/site", async (c) => {
       title,
       fetchedAt: Date.now(),
     });
-    await page.close();
     await browser.close();
 
     return c.json({

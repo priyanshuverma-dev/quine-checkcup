@@ -44,7 +44,10 @@ function SiteForm() {
 
       const StoreRes = await fetch("/api/site", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          url,
+          ...data,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -89,7 +92,10 @@ function SiteForm() {
             type="url"
             name="url"
             placeholder="Enter your website URL"
-            className="px-4 py-2 w-[100%] rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            className={cn(
+              "px-4 py-2 w-[100%] rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50",
+              errors["url"] && "focus:ring-rose-500"
+            )}
           />
           <button
             type="submit"
@@ -97,8 +103,7 @@ function SiteForm() {
             aria-disabled={isLoading}
             className={cn(
               "ml-2 px-4 py-2 bg-blue-600 rounded-md text-white font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50",
-              isLoading && "opacity-50 cursor-default",
-              errors["url"] && "focus:ring-rose-500"
+              isLoading && "opacity-50 cursor-default"
             )}
           >
             Check{isLoading ? "ing" : ""}
