@@ -1,13 +1,6 @@
+import { getBrowser } from "@/puppeteer/browser";
 import { Status } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer-core";
-
-export const maxDuration = 300;
-export const dynamic = "force-dynamic";
-
-const IS_PRODUCTION = process.env.NODE_ENV === "production";
-const browserWSEndpoint = process.env.BROWSERLESS_WS_URL;
-const getBrowser = async () => puppeteer.connect({ browserWSEndpoint });
 
 export async function POST(req: NextRequest) {
   try {

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { PLACEHOLDER_IMAGE_BASE64, cn } from "@/lib/utils";
 import { Site, Status } from "@prisma/client";
 import clsx from "clsx";
 import moment from "moment";
@@ -54,7 +54,7 @@ function SiteCard({
 
       <div className="p-2 flex items-start justify-start flex-col">
         <img
-          src={`data:image/*;base64, ${image}`}
+          src={`data:image/*;base64, ${image ?? PLACEHOLDER_IMAGE_BASE64}`}
           alt={`Screenshot of ${url}`}
           loading="lazy"
           className="rounded-lg w-full h-full object-center"

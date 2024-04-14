@@ -1,6 +1,6 @@
 import { updateSite } from "@/actions";
 import db from "@/lib/db";
-import { cn } from "@/lib/utils";
+import { PLACEHOLDER_IMAGE_BASE64, cn } from "@/lib/utils";
 import { Status } from "@prisma/client";
 import React, { Fragment } from "react";
 import { IoReload } from "react-icons/io5";
@@ -57,7 +57,9 @@ const SiteList = async (props: Props) => {
 
             <div className="p-2 flex items-start justify-start flex-col">
               <img
-                src={`data:image/*;base64, ${site.image}`}
+                src={`data:image/*;base64, ${
+                  site.image ?? PLACEHOLDER_IMAGE_BASE64
+                }`}
                 alt={`Screenshot of ${site.url}`}
                 loading="lazy"
                 className="rounded-lg w-full h-full object-center"
