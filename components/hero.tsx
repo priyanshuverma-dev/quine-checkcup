@@ -4,7 +4,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <div className="text-white max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+    <div className="text-white max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-10">
       <div className="text-center flex gap-2 max-w-4xl mx-auto items-center justify-center">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl">
           Website Status{" "}

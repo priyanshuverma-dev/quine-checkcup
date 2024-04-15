@@ -1,24 +1,48 @@
-import { updateSite } from "@/actions";
-import db from "@/lib/db";
+"use client";
+import useSites from "@/hooks/use-sites";
 import { PLACEHOLDER_IMAGE_BASE64, cn } from "@/lib/utils";
-import { Status } from "@prisma/client";
-import React, { Fragment } from "react";
-import { IoReload } from "react-icons/io5";
-import RefreshButton from "./forms/refresh-site";
+import { useGlobalStore } from "@/store/global";
+import { Site, Status } from "@prisma/client";
 import moment from "moment";
+import { Fragment } from "react";
+import LoadingSkeleton from "./loading-skeleton";
 
-type Props = {};
+const SiteList = () => {
+  const globalStore = useGlobalStore();
 
-const SiteList = async (props: Props) => {
-  const sites = await db.site.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  if (globalStore.isLoading) return <LoadingSkeleton />;
+
+  if (globalStore.isLoading == false && globalStore.site == null) {
+    return <Sites />;
+  }
+
+  return null;
+};
+
+export default SiteList;
+
+const Sites = () => {
+  const { data, error, isLoading } = useSites();
+  console.log(data);
+
+  if (error) return <div>Error: {error.message}</div>;
+
+  if (isLoading)
+    return Array(3)
+      .fill(0)
+      .map((el, index) => (
+        <div className="flex flex-row shadow-lg items-center gap-2 p-2 my-2 rounded border-2 border-gray-900/70">
+          <div className="rounded-full bg-gray-900/90 w-[4.5rem] h-[4.5rem] animate-pulse"></div>
+          <div className="flex flex-col gap-2 w-9/12">
+            <span className="w-11/12 bg-gray-900/90 h-2 rounded-full animate-pulse" />
+            <span className="w-9/12 bg-gray-900/90 h-2 rounded-full animate-pulse" />
+          </div>
+        </div>
+      ));
 
   return (
     <>
-      {sites.map((site) => (
+      {data.sites.map((site: Site) => (
         <Fragment key={site.id}>
           <div className="m-3 flex flex-col border border-gray-200 shadow-sm rounded-lg dark:border-gray-700 dark:shadow-slate-700/[.7]">
             {/* // Head  */}
@@ -62,7 +86,7 @@ const SiteList = async (props: Props) => {
             <div className="p-2 flex items-start justify-start flex-col">
               <img
                 src={`data:image/*;base64, ${
-                  site.image ?? PLACEHOLDER_IMAGE_BASE64
+                  site.image ? site.image : PLACEHOLDER_IMAGE_BASE64
                 }`}
                 alt={`Screenshot of ${site.url}`}
                 loading="lazy"
@@ -83,5 +107,3 @@ const SiteList = async (props: Props) => {
     </>
   );
 };
-
-export default SiteList;

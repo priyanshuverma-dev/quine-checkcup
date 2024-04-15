@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      return NextResponse.json({ id: updateRecord.id }, { status: 200 });
+      return NextResponse.json(updateRecord, { status: 200 });
     }
 
     const record = await db.site.create({
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({ id: record.id }, { status: 200 });
+    return NextResponse.json(record, { status: 200 });
   } catch (error: any) {
     console.log("[SITE_ROUTE_ERROR]", error.message);
     return NextResponse.json({ message: error.message }, { status: 500 });
