@@ -27,7 +27,9 @@ function SiteCard({
             className="w-6 h-6"
             alt={`Favicon of ${url}`}
           />
-          <p className="leading-6 pl-1 font-medium text-lg">{url}</p>
+          <p className="leading-6 pl-1 font-medium text-lg max-w-[calc(100%-3rem)] overflow-hidden whitespace-nowrap overflow-ellipsis">
+            {url}
+          </p>
         </div>
       </div>
 
