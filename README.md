@@ -8,6 +8,9 @@ Checkcup is a website monitoring tool that fetches the status of websites along 
 - Captures screenshots of websites for visual verification.
 - Supports monitoring multiple websites simultaneously.
 
+## VOTE FOR ME 🥺
+Please Vote on Quine: [Voting link here](https://quine.sh/repo/priyanshuverma-dev-quine-checkcup-786060195?utm_source=copy&utm_share_context=quests_creators)
+
 ## Live Preview
 
 You can view a live preview of Checkcup [here](https://quine-checkcup.vercel.app/).
