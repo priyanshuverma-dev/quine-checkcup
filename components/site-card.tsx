@@ -27,7 +27,7 @@ function SiteCard({
             className="w-6 h-6"
             alt={`Favicon of ${url}`}
           />
-          <p>
+          <p className="leading-6 pl-1 font-medium text-lg">
             {url}
           </p>
         </div>

@@ -57,7 +57,7 @@ const Sites = () => {
                   className="w-6 h-6"
                   alt={`Favicon of ${site.url}`}
                 />
-                <p>
+                <p className="leading-6 pl-1 font-medium text-lg">
                   {site.url}
                 </p>
               </div>
