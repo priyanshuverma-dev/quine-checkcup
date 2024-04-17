@@ -57,7 +57,9 @@ const Sites = () => {
                   className="w-6 h-6"
                   alt={`Favicon of ${site.url}`}
                 />
-                <p className="leading-6 pl-1 font-medium text-lg">{site.url}</p>
+                <p className="leading-6 pl-1 font-medium text-lg max-w-[calc(100%-3rem)] overflow-hidden whitespace-nowrap overflow-ellipsis">
+                  {site.url}
+                </p>
               </div>
               {/* <RefreshButton url={site.url} /> */}
             </div>
