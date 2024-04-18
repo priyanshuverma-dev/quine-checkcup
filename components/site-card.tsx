@@ -61,8 +61,8 @@ function SiteCard({
           loading="lazy"
           className="rounded-lg w-full h-full object-center"
         />
-        <div className="px-2">
-          <p className="text-lg font-medium py-2">{title}</p>
+        <div className="px-2 overflow-hidden">
+          <p className="text-lg font-medium py-2 overflow-ellipsis">{title}</p>
           <p className="text-sm">{description?.substring(0, 180)}..</p>
         </div>
       </div>
