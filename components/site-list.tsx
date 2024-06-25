@@ -47,7 +47,7 @@ const Sites = () => {
           <div className="m-3 flex flex-col border border-gray-200 shadow-sm rounded-lg dark:border-gray-700 dark:shadow-slate-700/[.7]">
             {/* // Head  */}
             <div className="flex justify-between flex-row items-center p-2">
-              <div className="flex flex-row justify-start items-center p-1.5 bg-neutral-800/55 border-2 border-neutral-800/[.7] rounded-full m-1">
+              <div className="flex flex-row justify-start items-center p-1.5 bg-neutral-800/55 border-2 border-neutral-800/[.7] rounded-full m-1 overflow-hidden">
                 <img
                   src={
                     site.favicon
