@@ -11,6 +11,11 @@ Checkcup is a website monitoring tool that fetches the status of websites along 
 ## VOTE FOR ME 🥺
 Please Vote on Quine: [Voting link here](https://quine.sh/repo/priyanshuverma-dev-quine-checkcup-786060195?utm_source=copy&utm_share_context=quests_creators)
 
+## Demo
+
+https://github.com/priyanshuverma-dev/quine-checkcup/assets/112266318/909ba434-f048-4e20-b0b4-d952e69daed0
+
+
 ## Live Preview
 
 You can view a live preview of Checkcup [here](https://quine-checkcup.vercel.app/).
